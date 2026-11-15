@@ -1,0 +1,162 @@
+.music-player {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-direction: row-reverse;
+}
+
+/* ── Song name label ── */
+.music-label-wrap {
+  overflow: hidden;
+  max-width: 0;
+  opacity: 0;
+  transition: max-width 0.4s ease, opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.music-player:hover .music-label-wrap,
+.music-label-wrap.hint-visible {
+  max-width: 220px;
+  opacity: 1;
+}
+
+/* ── Main button ── */
+.music-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid rgba(240, 160, 192, 0.5);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(196, 69, 105, 0.3);
+  overflow: hidden;
+}
+
+.music-btn:hover {
+  transform: scale(1.1);
+  border-color: var(--pink-deep);
+  box-shadow: 0 8px 32px rgba(196, 69, 105, 0.5);
+}
+
+.music-btn.playing {
+  border-color: var(--pink-deep);
+  box-shadow:
+    0 0 20px rgba(240, 160, 192, 0.6),
+    0 4px 20px rgba(196, 69, 105, 0.4);
+}
+
+.music-btn.loading {
+  opacity: 0.75;
+  cursor: wait;
+}
+
+/* ── Vinyl record ── */
+.vinyl {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #2d1b2e 0deg, #5a3a5a 60deg, #2d1b2e 120deg,
+    #5a3a5a 180deg, #2d1b2e 240deg, #5a3a5a 300deg, #2d1b2e 360deg
+  );
+  transition: all 0.3s ease;
+  opacity: 0.6;
+}
+
+.vinyl.spinning {
+  animation: spin 4s linear infinite;
+  opacity: 0.9;
+}
+
+.vinyl-groove {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(240, 160, 192, 0.15);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+.groove-1 { width: 32px; height: 32px; }
+.groove-2 { width: 20px; height: 20px; }
+
+.vinyl-center {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background: var(--pink-mid);
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(240, 160, 192, 0.8);
+}
+
+/* ── Music icon ── */
+.music-icon {
+  position: relative;
+  z-index: 2;
+  font-size: 1.3rem;
+  color: var(--pink-soft);
+  pointer-events: none;
+}
+
+/* ── Glowing ring when playing ── */
+.music-glow-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(240, 160, 192, 0.6);
+  animation: ring-pulse 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ── Song label text ── */
+.music-label {
+  font-family: var(--font-elegant);
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--text-mid);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  padding: 5px 12px;
+  border-radius: 20px;
+  box-shadow: 0 2px 12px rgba(196, 69, 105, 0.15);
+}
+
+.music-player:hover .music-label,
+.hint-visible .music-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── Keyframes ── */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes ring-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 0;
+  }
+}

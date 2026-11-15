@@ -1,0 +1,237 @@
+/* =========================================
+   DESIGN TOKENS & GLOBAL STYLES
+   ========================================= */
+:root {
+  --pink-soft: #f8c8d8;
+  --pink-mid: #f0a0c0;
+  --pink-deep: #e06090;
+  --pink-rose: #c44569;
+  --lavender: #d8c8f0;
+  --lavender-mid: #b8a0d8;
+  --lavender-deep: #8060b0;
+  --cream: #fdf6f0;
+  --cream-warm: #fce8d8;
+  --white: #ffffff;
+  --text-dark: #2d1b2e;
+  --text-mid: #5a3a5a;
+  --text-light: #8a6a8a;
+  --gold: #d4a853;
+  --gold-light: #f0d070;
+  
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-script: 'Dancing Script', cursive;
+  --font-body: 'Lato', sans-serif;
+  --font-elegant: 'Cormorant Garamond', serif;
+  
+  --shadow-soft: 0 8px 32px rgba(196, 69, 105, 0.15);
+  --shadow-glow: 0 0 40px rgba(240, 160, 192, 0.4);
+  --shadow-card: 0 20px 60px rgba(45, 27, 46, 0.12);
+  
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 32px;
+  --radius-xl: 48px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--text-dark);
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+
+/* =========================================
+   UTILITY CLASSES
+   ========================================= */
+.section {
+  position: relative;
+  padding: 100px 24px;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.text-center { text-align: center; }
+
+.heading-xl {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-dark);
+}
+
+.heading-lg {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 4vw, 2.8rem);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.heading-md {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-weight: 400;
+  font-style: italic;
+}
+
+.body-text {
+  font-family: var(--font-elegant);
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-weight: 300;
+  color: var(--text-mid);
+  line-height: 1.9;
+}
+
+/* =========================================
+   DECORATIVE DIVIDER
+   ========================================= */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: center;
+  margin: 24px 0;
+}
+.divider-line {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--pink-mid), transparent);
+}
+.divider-heart {
+  color: var(--pink-deep);
+  font-size: 1rem;
+  animation: heartbeat 2s ease-in-out infinite;
+}
+
+/* =========================================
+   KEYFRAME ANIMATIONS
+   ========================================= */
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  14% { transform: scale(1.3); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.2); }
+  70% { transform: scale(1); }
+}
+
+@keyframes float-up {
+  0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(-100px) rotate(720deg); opacity: 0; }
+}
+
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-18px) rotate(5deg); }
+  66% { transform: translateY(-8px) rotate(-3deg); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(240, 160, 192, 0.4), 0 0 40px rgba(196, 69, 105, 0.2); }
+  50% { box-shadow: 0 0 40px rgba(240, 160, 192, 0.8), 0 0 80px rgba(196, 69, 105, 0.4), 0 0 120px rgba(196, 69, 105, 0.2); }
+}
+
+@keyframes fade-in-up {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes scale-in {
+  0% { opacity: 0; transform: scale(0.85); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes typewriter-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes petal-fall {
+  0% { transform: translateY(-20px) rotate(0deg) translateX(0); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(360deg) translateX(50px); opacity: 0; }
+}
+
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes heart-glow-big {
+  0%, 100% { 
+    transform: scale(1);
+    filter: drop-shadow(0 0 20px rgba(240, 100, 150, 0.5));
+  }
+  50% { 
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 60px rgba(240, 100, 150, 0.9)) drop-shadow(0 0 100px rgba(196, 69, 105, 0.5));
+  }
+}
+
+@keyframes writing-reveal {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes slide-in-left {
+  0% { opacity: 0; transform: translateX(-60px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slide-in-right {
+  0% { opacity: 0; transform: translateX(60px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes polaroid-enter {
+  0% { opacity: 0; transform: rotate(var(--rot)) scale(0.7) translateY(40px); }
+  100% { opacity: 1; transform: rotate(var(--rot)) scale(1) translateY(0); }
+}
+
+/* =========================================
+   SCROLLBAR
+   ========================================= */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--cream);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--pink-mid);
+  border-radius: 3px;
+}
+
+/* =========================================
+   SELECTION
+   ========================================= */
+::selection {
+  background: var(--pink-soft);
+  color: var(--text-dark);
+}

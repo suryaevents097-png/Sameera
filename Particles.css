@@ -1,0 +1,62 @@
+.particles-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  bottom: -30px;
+  animation: float-up linear infinite;
+  pointer-events: none;
+  user-select: none;
+}
+
+.particle-heart {
+  font-size: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-style: normal;
+}
+
+.particle-star {
+  font-size: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: float-up linear infinite, star-twinkle ease-in-out infinite;
+}
+
+.particle-petal {
+  border-radius: 60% 40% 60% 40% / 50% 60% 40% 50%;
+  transform-origin: center;
+}
+
+.particle-dot {
+  border-radius: 50%;
+  background: var(--pink-soft);
+}
+
+@keyframes float-up {
+  0% { 
+    transform: translateY(0) rotate(0deg) translateX(0); 
+    opacity: 0; 
+  }
+  5% { opacity: var(--target-opacity, 0.5); }
+  85% { opacity: var(--target-opacity, 0.5); }
+  100% { 
+    transform: translateY(-110vh) rotate(360deg) translateX(30px); 
+    opacity: 0; 
+  }
+}
+
+@keyframes star-twinkle {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.8) drop-shadow(0 0 4px currentColor); }
+}

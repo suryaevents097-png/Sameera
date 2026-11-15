@@ -1,0 +1,178 @@
+.opening-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at 30% 40%, #3d1a4a 0%, #1a0a2e 50%, #0d0515 100%);
+  overflow: hidden;
+  transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+.opening-screen.leaving {
+  opacity: 0;
+  transform: scale(1.05);
+  pointer-events: none;
+}
+
+/* Gradient orbs */
+.opening-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  animation: float-gentle 8s ease-in-out infinite;
+}
+.orb-1 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(240,160,192,0.25) 0%, transparent 70%);
+  top: -100px; left: -100px;
+  animation-delay: 0s;
+}
+.orb-2 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(176,140,220,0.2) 0%, transparent 70%);
+  bottom: -80px; right: -80px;
+  animation-delay: 3s;
+}
+.orb-3 {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(240,208,112,0.15) 0%, transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: 1.5s;
+}
+
+/* Content */
+.opening-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.opening-pretitle {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.opening-star {
+  color: var(--gold-light);
+  font-size: 1.2rem;
+  animation: star-twinkle 2s ease-in-out infinite;
+}
+
+.opening-title {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 10vw, 6rem);
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  animation: fade-in-up 1.2s cubic-bezier(0.16,1,0.3,1) forwards;
+  text-shadow: 0 0 60px rgba(240, 160, 192, 0.3);
+}
+
+.opening-heart {
+  display: inline-block;
+  animation: heartbeat 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 12px rgba(240,100,120,0.8));
+}
+
+.opening-subtitle {
+  font-family: var(--font-elegant);
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(248, 200, 216, 0.9);
+  letter-spacing: 0.03em;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 1s ease, transform 1s ease;
+  max-width: 500px;
+}
+.opening-subtitle.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.opening-cta {
+  position: relative;
+  margin-top: 12px;
+  padding: 18px 44px;
+  background: linear-gradient(135deg, #e06090, #c44569, #9b3a7a);
+  border: none;
+  border-radius: 60px;
+  color: white;
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(24px) scale(0.95);
+  transition: opacity 1.2s ease, transform 1.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 32px rgba(196, 69, 105, 0.5), 0 0 60px rgba(196, 69, 105, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow: hidden;
+}
+.opening-cta.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  animation: glow-pulse 3s ease-in-out infinite 1.5s;
+}
+.opening-cta:hover {
+  transform: translateY(-3px) scale(1.03) !important;
+  box-shadow: 0 16px 48px rgba(196, 69, 105, 0.7), 0 0 80px rgba(196, 69, 105, 0.4) !important;
+}
+.opening-cta:active {
+  transform: scale(0.98) !important;
+}
+.opening-cta-icon {
+  font-size: 1.3rem;
+}
+.opening-cta-shimmer {
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  animation: shimmer 3s ease-in-out infinite 2s;
+}
+
+.opening-hint {
+  font-family: var(--font-elegant);
+  font-size: 0.95rem;
+  font-style: italic;
+  color: rgba(216, 200, 240, 0.7);
+  opacity: 0;
+  transition: opacity 1.4s ease;
+}
+.opening-hint.visible {
+  opacity: 1;
+}
+
+/* Corner decorations */
+.corner-deco {
+  position: absolute;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: rgba(240, 160, 192, 0.15);
+  animation: float-gentle 10s ease-in-out infinite;
+  pointer-events: none;
+}
+.corner-tl { top: 24px; left: 24px; animation-delay: 0s; }
+.corner-tr { top: 24px; right: 24px; animation-delay: 2s; }
+.corner-bl { bottom: 24px; left: 24px; animation-delay: 4s; }
+.corner-br { bottom: 24px; right: 24px; animation-delay: 6s; }
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
